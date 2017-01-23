@@ -13,20 +13,23 @@ void loop()
 {
   int buttonState; 
   buttonState = digitalRead(buttonPin);
+
+if (buttonState == HIGH){
   
-  if ((buttonState == HIGH) && (count == 0))
+  if (count == 0)
   {
-    digitalWrite(ledPin, HIGH);
+    digitalWrite(ledPin, HIGH); count = 1;
   }
 
   else
   {
-    digitalWrite(ledPin, LOW);
+    digitalWrite(ledPin, LOW); count = 0;
   }
 
 //  if ((buttonState == HIGH) && (count == 1))
 //  {
 //    digitalWrite(ledPin, LOW);
 //  }
-  
+
+}
 }
