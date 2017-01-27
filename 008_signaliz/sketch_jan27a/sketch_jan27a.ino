@@ -23,20 +23,20 @@ void loop() {
   lastButton = currentButton; // обнуляем состояние нажатия кнопки
   digitalWrite(ledPin, ledOn); // зажигаем/гасим светодиод
 
-//
+//*/
 if (digitalRead(ledPin) == HIGH) {
     int shockKy002SensorValue = digitalRead(shockKy002Sensor); // чтение состояния датчика
-      if (shockKy002SensorValue == HIGH) // когда датчик детектирует удар, светодиод загорается 
+      if (shockKy002SensorValue == LOW) // когда датчик детектирует удар, светодиод загорается 
       {
-        //digitalWrite (ledPin, HIGH);
+        //digitalWrite (ledPin, LOW);
         //Serial.println(shockKy002SensorValue);
       }
       else
       {
-        //digitalWrite (ledPin, LOW);
+        //digitalWrite (ledPin, HIGH);
       }
     }
-//
+//*/
 
 }
 
