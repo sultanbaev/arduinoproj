@@ -1,21 +1,21 @@
-// KY-020 датчик переключающий контакты при наклоне
-int led = 13 ;// назначение пина для светодиода
-int tiltSensorPin = 11; // назначение пина для датчика наклона
-int value ;// переменная для хранения значения датчика
+//KY-031 датчик удара
+int led = 13 ;// встроенный в адуино светодиод
+int shockSensor = 11; // пин для подключения датчика
+int value; // переменная состояния датчика
 void setup ()
 {
-  pinMode (led, OUTPUT) ;// пин светодиода работает как выход
-    pinMode (tiltSensorPin, INPUT) ; //пин дачика наклона работает как вход
+  pinMode (led, OUTPUT) ; 
+  pinMode (shockSensor, INPUT) ; // назначение входа для датчика
 }
 void loop ()
 {
-  value = digitalRead (tiltSensorPin) ;// чтение значения с датчика
-    if (value == HIGH) // когда с датчика появляется высокий уровень то светодиод горит
+  value = digitalRead (shockSensor) ; // чтение состояния датчика
+  if (value == HIGH) // когда датчик детектирует удар, светодиод загорается 
   {
-    digitalWrite (led, HIGH);
+    digitalWrite (led, LOW);
   }
   else
   {
-    digitalWrite (led, LOW);
+    digitalWrite (led, HIGH);
   }
 }
