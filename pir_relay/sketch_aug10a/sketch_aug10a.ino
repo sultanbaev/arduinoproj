@@ -1,11 +1,11 @@
 //Время калибровки датчика (10-60 сек. по даташиту)
-int calibrationTime = 1;       
+int calibrationTime = 20;       
 
 //Время, в которое был принят сигнал отсутствия движения(LOW)
 long unsigned int lowIn;        
 
 //Пауза, после которой движение считается оконченным
-long unsigned int pause = 2000; 
+long unsigned int pause = 30000; 
 
 //Флаг. false = значит движение уже обнаружено, true - уже известно, что движения нет
 boolean lockLow = true;
@@ -82,9 +82,11 @@ if (analogRead(ldr) > 800) {
 
 }
 
-else {lockLow = true;                
-      digitalWrite(relayPin, HIGH);
-      delay(50);}
+else {
+       lockLow = true;                
+       digitalWrite(relayPin, HIGH);
+       delay(50);
+     }
 //
 
 
