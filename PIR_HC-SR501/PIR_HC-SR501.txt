@@ -1,0 +1,23 @@
+#define pirPin 2
+#define LedPin 13
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(pirPin, INPUT);
+  pinMode(LedPin, OUTPUT);
+}
+
+void loop() {
+  int pirVal = digitalRead(pirPin);
+
+  //Если обнаружили движение
+  if (pirVal == HIGH) {
+    digitalWrite(LedPin, HIGH);
+    Serial.println("Motion detected");
+    delay(300);
+  }  else  {
+    Serial.println("No motion");
+    digitalWrite(LedPin, LOW);
+    delay(300);
+  }
+}

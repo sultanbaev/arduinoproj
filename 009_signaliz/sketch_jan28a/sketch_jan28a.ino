@@ -2,6 +2,8 @@ int ledPin = 13;
 int buttonOnPin = 12;
 int shockKy002Sensor = 11;
 
+unsigned long time;
+
 void setup() {
   Serial.begin(9600);
   pinMode (ledPin, OUTPUT);  
@@ -10,17 +12,18 @@ void setup() {
 }
 
 void loop() {
-
+  time = millis();
     int shockKy002SensorValue = digitalRead(shockKy002Sensor); // чтение состояния датчика
       if (shockKy002SensorValue == LOW) // когда датчик детектирует удар, светодиод загорается 
       {
         digitalWrite (ledPin, HIGH);
         Serial.println(shockKy002SensorValue);
+         
         
       }
       else
       {
         digitalWrite (ledPin, LOW);
       }
-      
+      //Serial.println(time);
 }
