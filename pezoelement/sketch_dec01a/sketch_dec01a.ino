@@ -4,7 +4,7 @@ int gerkon = 9;
 int buttonpin = 7; 
 
 int count = 0;
-int cancelcall = 0;
+//int cancelcall = 0;
 
 
 
@@ -35,18 +35,18 @@ void loop()
       if (digitalRead(gerkon) == LOW) // если геркон с магнитом
         {
           count = 0;
-          Serial.println("ОК"); // то все ок
+          //------------------------------Serial.println("ОК"); // то все ок
         }
     
       if (digitalRead(gerkon) == HIGH) // если геркон один
         {
-          Serial.println("Дверь открыта");
+          //--------------------------------Serial.println("Дверь открыта");
           //delay(5000);
           digitalWrite(pezoel, HIGH); // пищим и считаем сколько раз
-          delay(5);
+          delay(20);
           digitalWrite(pezoel, LOW);
           delay(1000);
-          Serial.println("Сигналим");
+          //-----------------------------------Serial.println("Сигналим");
           count = count + 1;
 
             //int buttonstate = digitalRead(buttonpin); // читаем кнопку
@@ -56,10 +56,10 @@ void loop()
             //}
         }
 
-      //if ((count == 5) && (cancelcall == 0)) // если пропищали 5 раз и кнопка не была нажата, то звоним на телефон
-      if (count == 5)
+      //if ((count == 5) && (cancelcall == 0)) // если пропищали 7 раз и кнопка не была нажата, то звоним на телефон
+      if (count == 7)
         {
-          Serial.println("Звоним");
+          //-------------------------------------Serial.println("Звоним");
           digitalWrite(ledpin, HIGH);
           delay(5000);
           digitalWrite(ledpin, LOW);
@@ -67,7 +67,7 @@ void loop()
         }
     
     //Serial.println(gerkonstat);
-    Serial.println(count);
+    //----------------------------------------------Serial.println(count);
     //delay(1000);
     
     //digitalWrite(pezoel, HIGH);
