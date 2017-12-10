@@ -3,10 +3,14 @@
 // -----------------------------------------------------------------------------------
 int switchPin = 13; // пин кнопки
 //int ledPin = 13; // пин светодиода
+
 boolean lastButton = false; // предыдущее состояние кнопки
 boolean currentButton = false; // текущее состояние кнопки
 //boolean ledOn = false; // состояние светодиода
 boolean securityState = false; // состояние охраны
+
+unsigned long time; // время с начала включения
+unsigned long timeToEnableSecurity = 5000; // таймер для автовключения защиты
 // -----------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------
@@ -36,12 +40,24 @@ void setup()
 // -----------------------------------------------------------------------------------
 void loop()
   {
+    time = millis();
+    if (time == timeToEnableSecurity)
+      {
+        Serial.println("автостарт");Serial.println("");
+        securityState = true;
+        Serial.println("охрана:");Serial.println(securityState);Serial.println("");
+        Serial.println("--------------------");
+      }//if
+
+    
     currentButton = debounce (lastButton); // получаем состояние кнопки без дребезга
     if (lastButton == false && currentButton == true)
       { // если кнопка была нажата дольше 5 мсек,
         //ledOn = !ledOn; // то меняем состояние светодиода
         securityState = !securityState;
-        Serial.println("охрана:"); Serial.println(securityState);
+        Serial.println("охрана:");Serial.println(securityState);Serial.println("");
+        time = millis();Serial.println("прошло:");Serial.println(time);Serial.println("");
+        Serial.println("--------------------");
       }//if
     lastButton = currentButton; // обнуляем состояние нажатия кнопки
     //digitalWrite (ledPin, ledOn); // зажигаем/гасим светодиод
@@ -60,6 +76,7 @@ void justSomeStat ()
     Serial.println("--------------------");
     Serial.println("Начальные данные");Serial.println("");
     Serial.println("охрана:");Serial.println(securityState);Serial.println("");
+    Serial.println("таймер:");Serial.println(timeToEnableSecurity);Serial.println("");
     Serial.println("--------------------");
   }//justSomeStat
 // -----------------------------------------------------------------------------------
