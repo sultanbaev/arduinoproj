@@ -80,7 +80,7 @@ void autostart ()
     Serial.println("автостарт");Serial.println("");
     securityState = true;
     Serial.println("охрана:");Serial.println(securityState);Serial.println("");
-    Serial.println("--------------------");
+    Serial.println("----------------------------------------");
   }//autostart
 // -----------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------
@@ -97,11 +97,11 @@ void autostart ()
 // -----------------------------------------------------------------------------------
 void justSomeStat ()
   {
-    Serial.println("--------------------");
+    Serial.println("------------------------------------------------------------");
     Serial.println("Начальные данные");Serial.println("");
     Serial.println("охрана:");Serial.println(securityState);Serial.println("");
     Serial.println("таймер:");Serial.println(timeToEnableSecurity);Serial.println("");
-    Serial.println("--------------------");
+    Serial.println("------------------------------------------------------------");
   }//justSomeStat
 // -----------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------
