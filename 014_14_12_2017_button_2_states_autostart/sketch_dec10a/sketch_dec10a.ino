@@ -10,6 +10,7 @@ boolean currentButton = false; // текущее состояние кнопки
 boolean securityState = false; // состояние охраны
 
 unsigned long time; // время с начала включения
+unsigned long timeSinceSecurityStateOff = 0;
 unsigned long timeToEnableSecurity = 5000; // таймер для автовключения защиты
 // -----------------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------
@@ -53,11 +54,27 @@ void loop()
       { // если кнопка была нажата дольше 5 мсек,
         //ledOn = !ledOn; // то меняем состояние светодиода
         securityState = !securityState;
+
+        
         Serial.println("охрана:");Serial.println(securityState);Serial.println("");
         time = millis();Serial.println("прошло:");Serial.println(time);Serial.println("");
         Serial.println("--------------------");
       }//if
     lastButton = currentButton; // обнуляем состояние нажатия кнопки
+
+
+          // ---------------------------          
+          if (securityState == true) // если сигнализация выключена
+            {
+              timeSinceSecurityStateOff = millis(); // сохраняем время нажатия кнопки (время выключения)
+            }//if
+
+          if (millis() - timeSinceSecurityStateOff > timeToEnableSecurity)
+            {
+              Serial.println("автостарт после выключения");  
+            }//if
+          // ---------------------------
+    
     //digitalWrite (ledPin, ledOn); // зажигаем/гасим светодиод
   }//loop
 // -----------------------------------------------------------------------------------
