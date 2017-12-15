@@ -39,11 +39,11 @@ void setup()
 // -----------------------------------------------------------------------------------
 void loop()
   {
-    time = millis();
-    if ((time == timeToEnableSecurity) && (securityState == false)) // если пора включать автозапуск
-      {
-        autostart ();
-      }//if
+    //time = millis();
+    //if ((time == timeToEnableSecurity) && (securityState == false)) // если пора включать автозапуск
+      //{
+        //autostart ();
+      //}//if
 
     
     currentButton = debounce (lastButton); // получаем состояние кнопки без дребезга
@@ -86,6 +86,7 @@ void autostart ()
     Serial.println("автостарт");Serial.println("");
     securityState = true;
     Serial.println("охрана:");Serial.println(securityState);Serial.println("");
+    time = millis();Serial.println("прошло:");Serial.println(time);Serial.println("");
     Serial.println("----------------------------------------");
   }//autostart
 // -----------------------------------------------------------------------------------
